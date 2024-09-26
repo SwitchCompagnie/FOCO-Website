@@ -70,12 +70,12 @@ class CodeBeautifierController extends Controller
     private function getFileExtension($language)
     {
         switch ($language) {
-            case 'javascript':
-                return 'js';
             case 'html':
                 return 'html';
             case 'css':
                 return 'css';
+            case 'javascript':
+                return 'js';
             case 'php':
                 return 'php';
             case 'json':
