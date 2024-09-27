@@ -46,20 +46,20 @@ class CodeBeautifierController extends Controller
      * @return string
      */
     private function beautifyCode($code, $language)
-    {
-        $fileExtension = $this->getFileExtension($language);
+	{
+		$fileExtension = $this->getFileExtension($language);
 
-        $filePath = storage_path("app/temp_code.$fileExtension");
+		$filePath = storage_path("app/temp_code.$fileExtension");
 
-        file_put_contents($filePath, $code);
+		file_put_contents($filePath, $code);
 
-        $command = "npx prettier --write $filePath";
-        shell_exec($command);
+		$command = "npx prettier --write $filePath > /dev/null 2>&1";
+		shell_exec($command);
 
-        $beautifiedCode = file_get_contents($filePath);
+		$beautifiedCode = file_get_contents($filePath);
 
-        return trim($beautifiedCode);
-    }
+		return trim($beautifiedCode);
+	}
 
     /**
      * Obtenir l'extension du fichier selon le langage
